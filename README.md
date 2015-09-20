@@ -6,7 +6,7 @@ Resolution of the tech exercise for Android Developer in WALLAPOP
 How is made
 ===
 
-* The application is build based on Clean Architecture and MVP (Model-View-Presenter
+* The application is build based on Clean Architecture and MVP (Model-View-Presenter)
 all the data sources are mapped between api and application domains.
 * The pattern repository is used to access the data
 * Dagger2 for dependency injection with a Component per view
@@ -41,8 +41,8 @@ Images
 Marvel api
 ===
 
-The application make use of Marvel Api to fetch the data, if you want to compile
-the application please put the keys on 
+The application uses Marvel Api to fetch the data, if you want to compile
+the application please put the keys on
 com.github.glomadrian.wallapopcodetest.app.di.module.DataSourceModule;
 
 APK
