@@ -24,7 +24,7 @@ public abstract class AdapterView implements View {
   public AdapterView(Context context, ViewGroup viewGroup) {
     this.context = context;
     this.viewGroup = viewGroup;
-    viewComponent = bindViewComponent();
+    viewComponent = bindViewComponent(context.getApplicationContext());
     assertBindViewComponent();
     viewComponent.inject(this);
     presenter = bindPresenter();
@@ -46,7 +46,7 @@ public abstract class AdapterView implements View {
     //Empty
   }
 
-  public abstract ViewComponent bindViewComponent();
+  public abstract ViewComponent bindViewComponent(Context context);
 
   public abstract Presenter bindPresenter();
 
@@ -65,5 +65,9 @@ public abstract class AdapterView implements View {
   private void assertBindLayout() {
     AssertUtils.assertThis(layout != 0, "No layout bind, bind a layout on bindLayout() method",
         getClass());
+  }
+
+  public android.view.View getView() {
+    return view;
   }
 }

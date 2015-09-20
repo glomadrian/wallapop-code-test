@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <FrameLayout
+      android:layout_marginLeft="30dp"
+      android:layout_width="1dp"
+      android:layout_height="match_parent"
+      android:background="@color/detail_vertical_line_color"
+      ></FrameLayout>
+
+  <FrameLayout
+      android:id="@+id/circle"
+      android:layout_marginTop="110dp"
+      android:layout_marginLeft="10dp"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:background="@drawable/circle"
+      >
+    <TextView
+        android:textColor="@color/comic_detail_year"
+        android:id="@+id/year"
+        android:textSize="@dimen/comic_detail_year"
+        android:layout_gravity="center_horizontal|center|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+  </FrameLayout>
+
+  <TextView
+      android:id="@+id/title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignTop="@+id/circle"
+      android:layout_toRightOf="@+id/circle"
+      android:layout_toEndOf="@+id/circle"
+      android:layout_marginLeft="12dp"
+      android:layout_marginStart="12dp"
+      android:layout_marginTop="10dp"
+      android:textSize="@dimen/comic_detail_title"
+
+      />
+
+  <com.github.glomadrian.wallapopcodetest.ui.custom.TriangleImageView
+      android:id="@+id/header_image"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      />
+
+  <TextView
+      android:layout_below="@+id/circle"
+      android:id="@+id/description"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="50dp"
+      android:layout_marginRight="10dp"
+      android:layout_marginBottom="10dp"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      />
+
+  <TextView
+      android:id="@+id/no_character"
+      android:textSize="@dimen/no_character_text"
+      android:text="@string/no_character"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      />
+</RelativeLayout>

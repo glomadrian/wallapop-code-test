@@ -1,6 +1,6 @@
 package com.github.glomadrian.wallapopcodetest.domain.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Adrián García Lomas
@@ -12,7 +12,8 @@ public class Comic {
   private String description;
   private String pages;
   private String thumbnailUrl;
-  private ArrayList<String> imagesUrls;
+  private String year;
+  private List<String> imagesUrls;
 
   public int getId() {
     return id;
@@ -54,11 +55,19 @@ public class Comic {
     this.thumbnailUrl = thumbnailUrl;
   }
 
-  public ArrayList<String> getImagesUrls() {
+  public List<String> getImagesUrls() {
     return imagesUrls;
   }
 
-  public void setImagesUrls(ArrayList<String> imagesUrls) {
+  public void setImagesUrls(List<String> imagesUrls) {
     this.imagesUrls = imagesUrls;
+  }
+
+  public String getYear() {
+    return year;
+  }
+
+  public void setYear(String year) {
+    this.year = year;
   }
 }

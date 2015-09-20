@@ -17,5 +17,5 @@ public interface Navigator {
 
   void setActivity(Activity activity);
 
-  void goToDetailView();
+  void goToDetailView(int comicId);
 }

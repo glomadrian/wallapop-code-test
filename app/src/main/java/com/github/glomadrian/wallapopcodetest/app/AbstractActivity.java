@@ -25,23 +25,27 @@ import com.github.glomadrian.wallapopcodetest.utils.AssertUtils;
  */
 public abstract class AbstractActivity extends AppCompatActivity implements View {
 
+  protected android.view.View view;
   private LifeCyclePresenter presenter;
   private int layout;
   private ViewComponent viewComponent;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     onBeforeInit();
     super.onCreate(savedInstanceState);
     init();
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     assertInitLaunched();
     super.onResume();
     presenter.onResume();
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     super.onDestroy();
     presenter.onDestroy();
   }
@@ -56,8 +60,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements View
     assertBindLayout();
     presenter.attachView(this);
     presenter.onCreate();
-    setContentView(layout);
+    view = getLayoutInflater().inflate(layout, null);
+    setContentView(view);
     ButterKnife.bind(this);
+    onViewReady();
   }
 
   public abstract ViewComponent bindViewComponent();
@@ -90,6 +96,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements View
    * override this method if needs to do something before the onCreate()
    */
   public void onBeforeInit() {
+    //Empty
+  }
+
+  public void onViewReady() {
     //Empty
   }
 }

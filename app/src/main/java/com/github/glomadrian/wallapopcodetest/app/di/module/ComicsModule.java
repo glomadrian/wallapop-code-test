@@ -21,7 +21,8 @@ public class ComicsModule {
   }
 
   @Provides
-  public ComicsPresenter provideComicsPresenter(GetComicsInteractor getComicsInteractor) {
-    return new ComicsPresenter(getComicsInteractor);
+  public ComicsPresenter provideComicsPresenter(GetComicsInteractor getComicsInteractor,
+      ComicRepository comicRepository) {
+    return new ComicsPresenter(getComicsInteractor, comicRepository);
   }
 }

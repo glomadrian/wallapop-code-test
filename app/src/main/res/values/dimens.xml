@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="comic_title">12dp</dimen>
+  <dimen name="comic_detail_year">10sp</dimen>
+  <dimen name="comic_detail_title">15sp</dimen>
+  <dimen name="no_character_text">20sp</dimen>
+</resources>

@@ -5,9 +5,9 @@ import com.github.glomadrian.wallapopcodetest.app.AbstractActivity;
 import com.github.glomadrian.wallapopcodetest.app.MainApplication;
 import com.github.glomadrian.wallapopcodetest.app.di.component.ViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.application.ApplicationComponent;
-import com.github.glomadrian.wallapopcodetest.app.di.component.detail.DaggerDetailViewComponent;
-import com.github.glomadrian.wallapopcodetest.app.di.module.DetailViewModule;
+import com.github.glomadrian.wallapopcodetest.app.di.provider.ComponentProvider;
 import com.github.glomadrian.wallapopcodetest.ui.LifeCyclePresenter;
+import com.github.glomadrian.wallapopcodetest.ui.comicinfo.view.ComicInfoFragment;
 import com.github.glomadrian.wallapopcodetest.ui.detail.presenter.DetailPresenter;
 import javax.inject.Inject;
 
@@ -16,22 +16,37 @@ import javax.inject.Inject;
  */
 public class DetailView extends AbstractActivity {
 
+  public static final String COMIC_ID = "comicId";
   @Inject protected DetailPresenter detailPresenter;
 
-  @Override public ViewComponent bindViewComponent() {
-    ApplicationComponent applicationComponent =
-        ((MainApplication) getApplication()).getApplicationComponent();
-    return DaggerDetailViewComponent.builder()
-        .applicationComponent(applicationComponent)
-        .detailViewModule(new DetailViewModule())
-        .build();
+  @Override
+  public void onViewReady() {
+    super.onViewReady();
+    int comidId = getIntent().getExtras().getInt(COMIC_ID);
+    detailPresenter.onComicIdAvailable(comidId);
   }
 
-  @Override public LifeCyclePresenter bindPresenter() {
+  @Override
+  public ViewComponent bindViewComponent() {
+    ApplicationComponent applicationComponent =
+        ((MainApplication) getApplication()).getApplicationComponent();
+    return ComponentProvider.getDetailViewComponent(applicationComponent);
+  }
+
+  @Override
+  public LifeCyclePresenter bindPresenter() {
     return detailPresenter;
   }
 
-  @Override public int bindLayout() {
+  @Override
+  public int bindLayout() {
     return R.layout.detail_view;
+  }
+
+  public void showComicInfoView(int comicId) {
+    ComicInfoFragment comicInfoFragment = ComicInfoFragment.newInstance(comicId);
+    getSupportFragmentManager().beginTransaction()
+        .add(R.id.comic_info_frame, comicInfoFragment)
+        .commit();
   }
 }
