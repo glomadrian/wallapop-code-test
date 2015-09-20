@@ -34,6 +34,11 @@ public interface ComicRepository {
   List<Comic> fetch();
 
   /**
+   * Get more comics from the data store with amount
+   */
+  List<Comic> fetch(int amount);
+
+  /**
    * Remove all stored comics in the repository
    */
   void erase();

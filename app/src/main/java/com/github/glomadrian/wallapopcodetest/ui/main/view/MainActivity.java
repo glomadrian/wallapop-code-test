@@ -1,8 +1,7 @@
 package com.github.glomadrian.wallapopcodetest.ui.main.view;
 
-import android.widget.Button;
+import android.widget.FrameLayout;
 import butterknife.Bind;
-import butterknife.OnClick;
 import com.github.glomadrian.wallapopcodetest.R;
 import com.github.glomadrian.wallapopcodetest.app.AbstractActivity;
 import com.github.glomadrian.wallapopcodetest.app.MainApplication;
@@ -10,16 +9,18 @@ import com.github.glomadrian.wallapopcodetest.app.di.component.ViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.application.ApplicationComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.main.DaggerMainViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.module.MainViewModule;
-import com.github.glomadrian.wallapopcodetest.ui.Presenter;
+import com.github.glomadrian.wallapopcodetest.ui.LifeCyclePresenter;
+import com.github.glomadrian.wallapopcodetest.ui.comics.view.ComicsFragment;
 import com.github.glomadrian.wallapopcodetest.ui.main.presenter.MainPresenter;
 import javax.inject.Inject;
 
 public class MainActivity extends AbstractActivity {
 
   @Inject protected MainPresenter mainPresenter;
-  @Bind(R.id.detail_button) protected Button detailButton;
+  @Bind(R.id.comics_frame) protected FrameLayout charactersFrame;
 
-  @Override public ViewComponent bindViewComponent() {
+  @Override
+  public ViewComponent bindViewComponent() {
     ApplicationComponent applicationComponent =
         ((MainApplication) getApplication()).getApplicationComponent();
     return DaggerMainViewComponent.builder()
@@ -28,15 +29,18 @@ public class MainActivity extends AbstractActivity {
         .build();
   }
 
-  @Override public Presenter bindPresenter() {
+  @Override
+  public LifeCyclePresenter bindPresenter() {
     return mainPresenter;
   }
 
-  @Override public int bindLayout() {
+  @Override
+  public int bindLayout() {
     return R.layout.activity_main;
   }
 
-  @OnClick(R.id.detail_button) public void onDetailButtonClick() {
-    mainPresenter.onGoToDetailAction();
+  public void showComicsView() {
+    ComicsFragment comicsFragment = ComicsFragment.newInstance();
+    getSupportFragmentManager().beginTransaction().add(R.id.comics_frame, comicsFragment).commit();
   }
 }

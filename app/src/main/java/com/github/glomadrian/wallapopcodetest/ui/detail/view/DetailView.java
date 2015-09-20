@@ -7,7 +7,7 @@ import com.github.glomadrian.wallapopcodetest.app.di.component.ViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.application.ApplicationComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.detail.DaggerDetailViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.module.DetailViewModule;
-import com.github.glomadrian.wallapopcodetest.ui.Presenter;
+import com.github.glomadrian.wallapopcodetest.ui.LifeCyclePresenter;
 import com.github.glomadrian.wallapopcodetest.ui.detail.presenter.DetailPresenter;
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ public class DetailView extends AbstractActivity {
         .build();
   }
 
-  @Override public Presenter bindPresenter() {
+  @Override public LifeCyclePresenter bindPresenter() {
     return detailPresenter;
   }
 
