@@ -2,6 +2,7 @@ package com.github.glomadrian.wallapopcodetest.ui.comics.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -12,8 +13,7 @@ import com.github.glomadrian.wallapopcodetest.app.AbstractFragment;
 import com.github.glomadrian.wallapopcodetest.app.MainApplication;
 import com.github.glomadrian.wallapopcodetest.app.di.component.ViewComponent;
 import com.github.glomadrian.wallapopcodetest.app.di.component.application.ApplicationComponent;
-import com.github.glomadrian.wallapopcodetest.app.di.component.comics.DaggerComicsComponent;
-import com.github.glomadrian.wallapopcodetest.app.di.module.ComicsModule;
+import com.github.glomadrian.wallapopcodetest.app.di.provider.ComponentProvider;
 import com.github.glomadrian.wallapopcodetest.domain.model.Comic;
 import com.github.glomadrian.wallapopcodetest.ui.LifeCyclePresenter;
 import com.github.glomadrian.wallapopcodetest.ui.comics.adapter.ComicsAdapter;
@@ -31,22 +31,17 @@ public class ComicsFragment extends AbstractFragment {
   @Bind(R.id.loading) protected ProgressBar loading;
   private ComicsAdapter comicsAdapter;
   private StaggeredGridLayoutManager layoutManager;
-  private FinishScrollListener finishScrollListener;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    finishScrollListener = new FinishScrollListener();
   }
 
   @Override
   public ViewComponent bindViewComponent() {
     ApplicationComponent applicationComponent =
         ((MainApplication) getActivity().getApplication()).getApplicationComponent();
-    return DaggerComicsComponent.builder()
-        .applicationComponent(applicationComponent)
-        .comicsModule(new ComicsModule())
-        .build();
+    return ComponentProvider.getComicsComponent(applicationComponent);
   }
 
   @Override
@@ -95,23 +90,15 @@ public class ComicsFragment extends AbstractFragment {
   }
 
   public void showError(String error) {
-    //TODO
+    Snackbar.make(getView(), error, Snackbar.LENGTH_SHORT).show(); // Don’t forget to show!
   }
 
   public void enableLastComicViewListener() {
     enableSearchOnFinish();
   }
 
-  public void disableLastComicViewListener() {
-    disableSearchOnFinish();
-  }
-
   private void enableSearchOnFinish() {
     comicsListView.addOnScrollListener(new FinishScrollListener());
-  }
-
-  private void disableSearchOnFinish() {
-    comicsListView.removeOnScrollListener(null);
   }
 
   public boolean isShowingCOmics() {
@@ -130,7 +117,6 @@ public class ComicsFragment extends AbstractFragment {
       int modelsCount = layoutManager.getItemCount();
 
       if (lastVisibleItemPosition == modelsCount) {
-        disableSearchOnFinish();
         comicsPresenter.onLastComicResearched();
       }
     }

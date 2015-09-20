@@ -56,7 +56,6 @@ public class ComicsPresenter extends LifeCyclePresenter<ComicsFragment> {
     if (!loading) {
       loading = true;
       Log.i(LogUtils.generateTag(this), " more!");
-      view.disableLastComicViewListener();
       view.showLoading();
       getComicsInteractor.execute(8, comicsCallback);
     }
