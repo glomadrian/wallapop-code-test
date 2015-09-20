@@ -1,7 +1,10 @@
 package com.github.glomadrian.wallapopcodetest.app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import com.github.glomadrian.wallapopcodetest.app.di.component.ViewComponent;
 import com.github.glomadrian.wallapopcodetest.ui.LifeCyclePresenter;
@@ -9,41 +12,48 @@ import com.github.glomadrian.wallapopcodetest.ui.View;
 import com.github.glomadrian.wallapopcodetest.utils.AssertUtils;
 
 /**
- * Abstract activity do all the boilerplate code (injection, view injection, presenter lifecycle
- * binding)
- *
- * The activity must call the init method in the onCreate() and implements bindPresenter
- * with his injected presenter because the Abstract Activity need the instance of the presenter
- * to bind the lifecycle
- *
- * The module used to inject is provide by the children activity, so the view must create his own
- * dependency injection component
- *
- * If custom initialization is needed then override the init method
- *
  * @author Adrián García Lomas
  */
-public abstract class AbstractActivity extends AppCompatActivity implements View {
+public abstract class AbstractFragment extends Fragment implements View {
 
   private LifeCyclePresenter presenter;
   private int layout;
   private ViewComponent viewComponent;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
     onBeforeInit();
     super.onCreate(savedInstanceState);
     init();
   }
 
-  @Override protected void onResume() {
+  @Override
+  public void onResume() {
     assertInitLaunched();
     super.onResume();
     presenter.onResume();
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  public void onDestroy() {
     super.onDestroy();
     presenter.onDestroy();
+  }
+
+  @Nullable
+  @Override
+  public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    layout = bindLayout();
+    assertBindLayout();
+    return inflater.inflate(layout, container, false);
+  }
+
+  @Override
+  public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    presenter.attachView(this);
+    ButterKnife.bind(this, getView());
   }
 
   protected void init() {
@@ -52,12 +62,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements View
     viewComponent.inject(this);
     presenter = bindPresenter();
     assertBindPresenter();
-    layout = bindLayout();
-    assertBindLayout();
-    presenter.attachView(this);
     presenter.onCreate();
-    setContentView(layout);
-    ButterKnife.bind(this);
   }
 
   public abstract ViewComponent bindViewComponent();
@@ -93,4 +98,3 @@ public abstract class AbstractActivity extends AppCompatActivity implements View
     //Empty
   }
 }
-
