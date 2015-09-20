@@ -76,7 +76,10 @@ public class ComicInfoFragment extends AbstractFragment {
   }
 
   public void drawHeader(String image) {
-    Picasso.with(getContext()).load(image).into(triangleImageView);
+    Picasso.with(getContext())
+        .load(image)
+        .placeholder(R.drawable.placeholder)
+        .into(triangleImageView);
   }
 
   public void showNoComicSelected() {
@@ -86,6 +89,4 @@ public class ComicInfoFragment extends AbstractFragment {
   public void hideNoComicSelected() {
     noCharacter.setVisibility(View.INVISIBLE);
   }
-
-
 }

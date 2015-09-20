@@ -101,7 +101,7 @@ public class ComicsFragment extends AbstractFragment {
     comicsListView.addOnScrollListener(new FinishScrollListener());
   }
 
-  public boolean isShowingCOmics() {
+  public boolean isShowingComics() {
     return comicsAdapter.getItemCount() > 0;
   }
 

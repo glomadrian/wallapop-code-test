@@ -33,7 +33,7 @@ public class ComicsPresenter extends LifeCyclePresenter<ComicsFragment> {
   @Override
   public void onViewReady() {
     super.onViewReady();
-    if (!view.isShowingCOmics()) {
+    if (!view.isShowingComics()) {
       populateViewComics();
     }
     view.enableLastComicViewListener();

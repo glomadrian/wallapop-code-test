@@ -10,6 +10,9 @@ import com.github.glomadrian.wallapopcodetest.ui.View;
 import com.github.glomadrian.wallapopcodetest.utils.AssertUtils;
 
 /**
+ * Adapter view is used for views that lives in adapters, every view in the adapter
+ * have a presenter to manage the actions
+ *
  * @author Adrián García Lomas
  */
 public abstract class AdapterView implements View {

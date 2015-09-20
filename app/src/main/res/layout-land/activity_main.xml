@@ -1,25 +1,52 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:tag="V11-landscape"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:weightSum="5"
+    android:tag="V11-landscape"
     >
-
-  <FrameLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/comics_frame"
+  <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar"
+      ></include>
+  <android.support.v4.widget.DrawerLayout
+      android:layout_below="@id/toolbar"
+      android:id="@+id/drawer_layout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_weight="3"
-      />
+      >
 
-  <FrameLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/details_frame"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="2"
-      />
-</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:tag="V11-landscape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:weightSum="5"
+        >
+
+      <FrameLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/comics_frame"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="3"
+          />
+
+      <FrameLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/details_frame"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="2"
+          />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragment_drawer"
+        android:name="com.github.glomadrian.wallapopcodetest.ui.user.view.UserViewFragment"
+        android:layout_width="@dimen/navigation_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        />
+  </android.support.v4.widget.DrawerLayout>
+</RelativeLayout>
+

@@ -2,4 +2,6 @@
   <string name="app_name">Adrian Code test</string>
   <string name="hello_world">Hello world!</string>
   <string name="no_character">No character selected</string>
+  <string name="name">Senior Android Developer</string>
+  <string name="made">Made with ♥</string>
 </resources>

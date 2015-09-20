@@ -4,4 +4,7 @@
   <dimen name="comic_detail_year">10sp</dimen>
   <dimen name="comic_detail_title">15sp</dimen>
   <dimen name="no_character_text">20sp</dimen>
+  <dimen name="comic_title_bar_text">12sp</dimen>
+  <dimen name="navigation_width">260dp</dimen>
+  <dimen name="made_size">25sp</dimen>
 </resources>

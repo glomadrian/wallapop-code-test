@@ -13,6 +13,8 @@ import retrofit.RetrofitError;
 import retrofit.converter.GsonConverter;
 
 /**
+ * Custom implementation of Comic Data Source using retrofit
+ *
  * @author Adrián García Lomas
  */
 public class MarvelServiceDataSource implements ComicDataSource {

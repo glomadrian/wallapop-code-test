@@ -11,4 +11,18 @@
       android:scaleType="centerCrop"
       />
 
+  <TextView
+      android:id="@+id/title"
+      android:layout_alignParentBottom="true"
+      android:layout_width="match_parent"
+      android:layout_height="30dp"
+      android:layout_marginBottom="20dp"
+      android:textColor="@color/comic_title_bar_text"
+      android:background="@color/comic_title_bar"
+      android:textSize="@dimen/comic_title_bar_text"
+      android:gravity="center"
+      android:singleLine="true"
+
+      />
+
 </RelativeLayout>

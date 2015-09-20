@@ -1,7 +1,7 @@
 package com.github.glomadrian.wallapopcodetest.app.executor;
 
 /**
- * Interface to
+ * Interface for create a executor
  *
  * @author Adrián García Lomas
  */

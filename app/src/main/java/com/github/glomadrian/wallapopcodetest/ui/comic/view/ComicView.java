@@ -3,6 +3,7 @@ package com.github.glomadrian.wallapopcodetest.ui.comic.view;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.github.glomadrian.wallapopcodetest.R;
@@ -24,6 +25,7 @@ public class ComicView extends AdapterView {
 
   @Inject protected ComicPresenter comicPresenter;
   @Bind(R.id.thumbnail) protected ImageView thumbnail;
+  @Bind(R.id.title) protected TextView title;
 
   private Comic comic;
 
@@ -37,9 +39,10 @@ public class ComicView extends AdapterView {
   }
 
   public void drawComic() {
+    title.setText(comic.getTitle());
     Picasso.with(context)
         .load(comic.getThumbnailUrl())
-        .placeholder(R.drawable.placeholder)
+        .placeholder(R.drawable.placeholder_portrait)
         .into(thumbnail);
   }
 
@@ -60,8 +63,8 @@ public class ComicView extends AdapterView {
     return R.layout.comic_view;
   }
 
-   @OnClick(R.id.thumbnail)
-  public void onThumbnailCLick(){
-     comicPresenter.onComicClicked(comic);
-   }
+  @OnClick(R.id.thumbnail)
+  public void onThumbnailCLick() {
+    comicPresenter.onComicClicked(comic);
+  }
 }

@@ -9,6 +9,8 @@ import com.github.glomadrian.wallapopcodetest.domain.repository.ComicRepository;
 import java.util.List;
 
 /**
+ * This case use get comics from a injected Repository
+ *
  * @author Adrián García Lomas
  */
 public class GetComicsInteractor extends AbstractInteractor {

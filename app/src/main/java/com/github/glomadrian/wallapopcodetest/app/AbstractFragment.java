@@ -12,6 +12,9 @@ import com.github.glomadrian.wallapopcodetest.ui.View;
 import com.github.glomadrian.wallapopcodetest.utils.AssertUtils;
 
 /**
+ * Abstract fragment manage the lifecycle and binding with Presenter
+ * Also do the views injections and dependencies injection
+ *
  * @author Adrián García Lomas
  */
 public abstract class AbstractFragment extends Fragment implements View {

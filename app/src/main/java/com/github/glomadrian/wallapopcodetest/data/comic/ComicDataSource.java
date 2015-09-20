@@ -5,6 +5,8 @@ import com.github.glomadrian.wallapopcodetest.domain.model.Comic;
 import java.util.List;
 
 /**
+ * Define how a Comic data sourve should be implemented
+ *
  * @author Adrián García Lomas
  */
 public interface ComicDataSource {

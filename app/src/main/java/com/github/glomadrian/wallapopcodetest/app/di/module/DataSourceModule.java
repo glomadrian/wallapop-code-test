@@ -22,13 +22,13 @@ public class DataSourceModule {
   @Provides
   @Named("marvel_public_api_key")
   public String provideMarvelPublicKey() {
-    return "3a39768d38da927248f7ed89477e9ff6";
+    return "6a7ed890b4b941a925202a5630d5b162";
   }
 
   @Provides
   @Named("marvel_private_api_key")
   public String provideMarvelPrivateKey() {
-    return "b80e34966642c6bf0d1b47b389462ee0a6b2d822";
+    return "0f1d0fdf46a0bf32f962b0b9997233c0395cdf8e";
   }
 
   @Provides

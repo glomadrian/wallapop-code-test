@@ -1,16 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:tag="V11-portrait"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:tag="V11-portrait"
     >
-
-  <FrameLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/comics_frame"
+  <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar"
+      ></include>
+  <android.support.v4.widget.DrawerLayout
+      android:layout_below="@id/toolbar"
+      android:id="@+id/drawer_layout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      >
+    <RelativeLayout
+        android:tag="V11-portrait"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
+      <FrameLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/comics_frame"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/fragment_drawer"
+        android:name="com.github.glomadrian.wallapopcodetest.ui.user.view.UserViewFragment"
+        android:layout_width="@dimen/navigation_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        />
+  </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
